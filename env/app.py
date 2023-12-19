@@ -5,8 +5,21 @@ import os  # place files in system
 
 
 def download_video():
-    print("Downloading...")
+    url = userUrl.get()
+    resolution = resolutionVar.get()
 
+    progressLabel.pack(pady=("10p", "5p"))
+    progressBar.pack(pady=("10p", "5p"))
+    statusLabel.pack(pady=("10p", "5p"))
+
+    try:
+        yt = YouTube(url)
+        stream = yt.streams.filter(res=resolution).first()  # only fetch video from url if valid
+        print(yt.title)
+        stream.download()
+
+    except Exception as e:
+        statusLabel.configure(text=f"Error {str(e)}", text_color="white",fg_color="red")
 
 # create root window
 root = ctk.CTk()
@@ -37,12 +50,12 @@ downloadButton = ctk.CTkButton(content_frame, text="Download", command=download_
 downloadButton.pack(pady=("10p", "5p"))
 
 # create a resolution selector box
-resolutionList = ["1080px", "720px", "360px", "240px"]
+resolutionList = ["1080p", "720p", "360p", "240p"]
 resolutionVar = ctk.StringVar()
 # assign selected value to resolution variable
 resolutionComboBox = ttk.Combobox(content_frame, values=resolutionList, textvariable=resolutionVar)
 resolutionComboBox.pack(pady=("10p", "5p"))
-resolutionComboBox.set("720px")
+resolutionComboBox.set("720p")
 
 # create progress label
 progressLabel = ctk.CTkLabel(content_frame, text="0%")
