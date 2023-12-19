@@ -13,13 +13,27 @@ def download_video():
     statusLabel.pack(pady=("10p", "5p"))
 
     try:
-        yt = YouTube(url)
+        yt = YouTube(url, on_progress_callback=on_progress)
         stream = yt.streams.filter(res=resolution).first()  # only fetch video from url if valid
-        print(yt.title)
-        stream.download()
+        # download video into a specific place
+        os.path.join("downloads", f"{yt.title}.mp4")  # download video into downloads folder with video title
+        stream.download(output_path="downloads")
+        statusLabel.configure(text="Downloaded", text_color="white", fg_color="green")
 
     except Exception as e:
-        statusLabel.configure(text=f"Error {str(e)}", text_color="white",fg_color="red")
+        statusLabel.configure(text=f"Error {str(e)}", text_color="white", fg_color="red")
+
+
+def on_progress(stream, chunk, bytes_remaining):
+    total_size = stream.filesize
+    bytes_downloaded = total_size - bytes_remaining
+    percent_completed = (bytes_downloaded / total_size) * 100
+    print(f"{percent_completed}% complete")
+
+    progressLabel.configure(text=str(int(percent_completed)) + "%")
+    progressLabel.update()
+    progressBar.set(float(percent_completed) / 100)
+
 
 # create root window
 root = ctk.CTk()
@@ -63,11 +77,11 @@ progressLabel = ctk.CTkLabel(content_frame, text="0%")
 
 # create progress bar to show download progress
 progressBar = ctk.CTkProgressBar(content_frame, width=400)
-progressBar.set(0.6)
+progressBar.set(0)
 # progressBar.pack(pady=("10p", "5p"))
 
 # create a status label for when downloaded
-statusLabel = ctk.CTkLabel(content_frame, text="Downloaded")
+statusLabel = ctk.CTkLabel(content_frame, text="")
 # statusLabel.pack(pady=("10p", "5p"))
 
 # to start the app
