@@ -25,3 +25,5 @@ The script downloads the video into a 'downloads' folder within the script direc
 The script will create a 'downloads' folder in working directory if none pre-existing.
 In case of errors during the download process, the script displays error messages in the status label.
 The progress bar indicates the percentage of download completion.
+Potential lag when clicking download button. 
+Vidoe will not download again and progress bar will not update if video is already downloaded in directory.
