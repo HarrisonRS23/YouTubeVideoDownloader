@@ -5,6 +5,7 @@ import os  # place files in system
 
 
 def download_video():
+    downloadButton.configure(state=ctk.DISABLED)
     url = userUrl.get()
     resolution = resolutionVar.get()
 
@@ -22,6 +23,7 @@ def download_video():
 
     except Exception as e:
         statusLabel.configure(text=f"Error {str(e)}", text_color="white", fg_color="red")
+    downloadButton.configure(state=ctk.NORMAL)
 
 
 def on_progress(stream, chunk, bytes_remaining):
@@ -64,7 +66,7 @@ downloadButton = ctk.CTkButton(content_frame, text="Download", command=download_
 downloadButton.pack(pady=("10p", "5p"))
 
 # create a resolution selector box
-resolutionList = ["1080p", "720p", "360p", "240p"]
+resolutionList = ["1440p", "1080p", "720p", "360p", "240p"]
 resolutionVar = ctk.StringVar()
 # assign selected value to resolution variable
 resolutionComboBox = ttk.Combobox(content_frame, values=resolutionList, textvariable=resolutionVar)
