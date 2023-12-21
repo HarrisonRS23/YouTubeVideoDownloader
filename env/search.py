@@ -33,11 +33,11 @@ def show_search_results(yt):
 
 
 def download_video(yt):
+    print("downloading...")
     # create results button
     stream = yt.streams.get_highest_resolution()
     os.path.join("downloads", f"{yt.title}.mp4")  # download video into downloads folder with video title
     stream.download(output_path="downloads")
-    print("downloading...")
 
 
 # create root window
