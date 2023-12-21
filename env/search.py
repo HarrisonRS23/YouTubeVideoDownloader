@@ -1,5 +1,4 @@
 import functools
-
 import customtkinter as ctk  # custom tkinter library for visuals
 from tkinter import ttk
 from pytube import YouTube  # library to access youtube videos
