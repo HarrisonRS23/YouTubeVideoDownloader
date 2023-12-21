@@ -10,9 +10,8 @@ pip install -r requirements.txt
 The requirements.txt file contains the necessary libraries and their versions needed to run the script.
 
 ## Running the Script
-To run the script, cd into env then execute the script using python3. Upon execution, a graphical user interface (GUI) will appear, prompting you to enter a YouTube video URL and select the desired resolution for downloading.
+To run the script, execute the script using python3 app.py. Upon execution, a graphical user interface (GUI) will appear, prompting you to enter a YouTube video URL and select the desired resolution for downloading.
 
-### cd env/
 ### python3 app.py
 
 ## The following functionalities are included:
