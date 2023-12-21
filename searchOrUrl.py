@@ -5,12 +5,12 @@ from tkinter import ttk
 
 def start_url():
     # Call the script for URL functionality
-    subprocess.run(["python3", "env/app.py"])
+    subprocess.run(["python3", "app.py"])
 
 
 def start_search():
     # Call the script for search functionality
-    subprocess.run(["python3", "env/search.py"])
+    subprocess.run(["python3", "search.py"])
 
 
 # create root window
